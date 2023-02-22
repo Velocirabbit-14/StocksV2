@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserInfo({portfolioValue, availableFunds}) {
+function UserInfo({user}) {
   return (
     <div id="userInfoContainer">
       <h2>Portfolio Value: {portfolioValue}</h2>

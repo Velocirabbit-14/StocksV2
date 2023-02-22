@@ -42,7 +42,6 @@ function Login({ setLoggedIn, setUser }) {
         res = await res.json();
         setUser(res.user)
         setLoggedIn(true)
-
     }
 
     return (

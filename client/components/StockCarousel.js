@@ -2,13 +2,13 @@ import React from 'react'
 // import Carousel from "react-elastic-carousel";
 import StockCard from "./StockCard";
 
-function StockCarousel({stocks}) {
-    // we need to pass down price as well
+function StockCarousel({stocks, pricesObj}) {
+
     return (
-    <div>
+    <div id="carouselContainer">
       <Carousel>
         {stocks.map((stock, idx) => (
-          <StockCard key={idx} stock={stock}/>
+          <StockCard key={idx} stock={stock} price={pricesObj[stock]}/>
         ))}
       </Carousel>
     </div>
