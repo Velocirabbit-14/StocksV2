@@ -10,7 +10,7 @@ function StockCard({stock, price}) {
         // inputRef.current.val is input value
         setQtyData(inputRef.current.value);
         // declare body and set equal to object with units as key and qtyData as value
-        const body = {units : qtyData}
+        const body = {shares : qtyData}
         // make post request
         // DUMMY ROUTE. TO BE UPDATED
         fetch('/user/buy', {
@@ -30,7 +30,7 @@ function StockCard({stock, price}) {
         // inputRef.current.val is input value
         setQtyData(inputRef.current.value);
         // declare body and set equal to object with units as key and qtyData as value
-        const body = {units : qtyData}
+        const body = {shares: qtyData}
         // make post request
         // DUMMY ROUTE. TO BE UPDATED
         fetch('/user/sell', {

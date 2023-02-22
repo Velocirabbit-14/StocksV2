@@ -1,19 +1,42 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
+import TableContainer from '@mui/material/TableContainer';
+import TableCell from '@mui/material/TableCell';
+import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Table from '@mui/material/Table';
+import Paper from '@mui/material/Paper';
+import * as React from 'react';
 
 export default function PortfolioTable({user, pricesObj}) {
 // Write logic to get total portfolio value
+  const getTotalPortfolioValue = () => {
+    const totalValue = 0;
+    const portfolio = user.portfolio;
+    for (let obj of portfolio) {
+      const company = Object.keys(obj)[0];
+      const shares = obj[company];
+      totalValue += shares * pricesObj[company];
+    }
+    return totalValue; 
+  }
+ 
 
+  const totalPortfolioValue = getTotalPortfolioValue();
 
-
-  
+  const createRows = () => {
+    const rows = [];
+    const portfolio = user.portfolio;  
+    for (let obj of portfolio) {
+      const company = Object.keys(obj)[0];
+      const shares = obj[company];
+      const value = shares * pricesObj[company];
+      const percentage = Math.floor(value / totalPortfolioValue);
+      rows.push({company, shares, value, percentage})
+    }
+    return rows;
+  }
+  const rows = createRows();
   const columns = [
   { id: 'company', label: 'Company', minWidth: 170 },
   { id: 'shares', label: 'Shares', minWidth: 100 },
@@ -32,19 +55,6 @@ export default function PortfolioTable({user, pricesObj}) {
     format: (value) => value.toLocaleString('en-US'),
   },
 ];
-
-function createData(company, shares,$ , percent) {
-  const density = $ / percent;
-  return { company, shares, $, percent};
-}
-
-//***************************** */ need to set the correct property names below when we know what they are*****************************//
-const rows = [createData(`garrett`, `zack`, `mowi`, `thomas`)];
-for(let obj of data){
-    rows.push(createData(`${obj.ticker}`, `${obj.shares}`, `${obj.$}`, `${obj.percent}`))
-   
-}
-//////////**************************************     above set property names when known        ****************************************************** */
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
