@@ -47,6 +47,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "react-carousel-npm": "^2.1.4"
+    "react-carousel-npm": "^2.1.4",
+    "react-elastic-carousel": "^0.11.5"
   }
 }
