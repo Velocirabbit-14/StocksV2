@@ -28,12 +28,9 @@ export default function App() {
   const [user, setUser] = useState('');
   const [data, setData] = useState(null);
 
-
   // ********************* fetch requests ******************************//
 
-useEffect(()=>{
-
-},[loggedIn])
+  useEffect(() => {}, [loggedIn]);
 
   useEffect(() => {
     async function getData(stocks) {
@@ -53,11 +50,9 @@ useEffect(()=>{
     getData(stocks);
   }, []);
 
-
   if (!data) {
     return <div>loading</div>;
   }
-
 
   const getPrices = () => {
     const pricesObj = {};
@@ -71,30 +66,31 @@ useEffect(()=>{
 
   return (
     <>
-    {!loggedIn ? 
-      <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
-      :
-      <div className='w-screen h-screen flex flex-col justify-center items-center bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500'>
-        <div className='absolute right-10 top-5'>
-          <Avatar src={mauiImage} />
-        </div>
+      {!loggedIn ? (
+        <Login setUser={setUser} setLoggedIn={setLoggedIn} />
+      ) : (
+        <div className='w-screen h-screen flex flex-col justify-center items-center bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500'>
+          <div className='absolute right-10 top-5'>
+            <Avatar />
+          </div>
 
-        <div className='w-5/6 h-5/6 border rounded-2xl shadow-lg bg-white '>
-          <StockCarousel user={user} stocks={stocks} setUser={setUser} pricesObj={getPrices(data)} />
-          <div className='flex justify-between p-16'>
-            <div>
-              <UserInfo user={user} pricesObj={getPrices(data)} />
+          <div className='w-5/6 h-5/6 border rounded-2xl shadow-lg bg-white '>
+            <StockCarousel
+              user={user}
+              stocks={stocks}
+              setUser={setUser}
+              pricesObj={getPrices(data)}
+            />
+            <div className='flex justify-between p-16'>
+              <div>
+                <UserInfo user={user} pricesObj={getPrices(data)} />
+              </div>
+              <NewTable user={user} pricesObj={getPrices(data)} />
+              {/* <PortfolioTable user={user} pricesObj={getPrices(data)} /> */}
             </div>
-            <NewTable user={user} pricesObj={getPrices(data)} />
-            {/* <PortfolioTable user={user} pricesObj={getPrices(data)} /> */}
           </div>
         </div>
-      </div>
-    
-    
-    }
-    
-   
+      )}
     </>
   );
 }

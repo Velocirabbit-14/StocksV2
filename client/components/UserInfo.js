@@ -1,31 +1,25 @@
 import React from 'react';
 
 function UserInfo({ user, pricesObj }) {
-
-
   const getTotalPortfolioValue = () => {
-   
     let totalValue = 0;
     const portfolio = user.portfolio;
     for (let obj of portfolio) {
-      const company = Object.keys(obj)[0];
-      const shares = obj[company];
+      const company = obj.ticker;
+      const shares = obj.shares;
       totalValue += shares * pricesObj[company];
     }
     return totalValue;
   };
   const totalPortfolioValue = getTotalPortfolioValue();
 
-
-
   return (
     <div
       className='text-xl bg-white rounded-lg shadow-lg p-4'
       id='userInfoContainer'
     >
-    <div>{`${user.username}`}</div>
       <h2>Portfolio Value: {`$${totalPortfolioValue.toFixed(0)}`}</h2>
-      <h2>Available Funds: {`${user.funds}`}</h2>
+      <h2>Available Funds: {`$${Number(user.funds).toFixed(0)}`}</h2>
     </div>
   );
 }
