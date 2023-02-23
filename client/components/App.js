@@ -3,7 +3,6 @@ import PortfolioTable from './PortfolioTable';
 import UserInfo from './UserInfo';
 import Avatar from '@mui/material/Avatar';
 import Login from './Login';
-// import fetch from 'node-fetch';
 import StockCarousel from './StockCarousel';
 import NewTable from './NewTable';
 // import UserInfo from './UserInfo';
@@ -26,13 +25,15 @@ export default function App() {
     'GOOGL',
   ];
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({
-    portfolio: [{ AAPL: 7 }, { AMZN: 12 }, { TSLA: 7 }, { META: 5 }],
-  });
+  const [user, setUser] = useState('');
   const [data, setData] = useState(null);
 
 
   // ********************* fetch requests ******************************//
+
+useEffect(()=>{
+
+},[loggedIn])
 
   useEffect(() => {
     async function getData(stocks) {
@@ -67,10 +68,12 @@ export default function App() {
     }
     return pricesObj;
   };
-  console.log(data);
+
   return (
     <>
-      {/* <Login setUser={setUser} setLoggedIn={setLoggedIn}/> */}
+    {!loggedIn ? 
+      <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
+      :
       <div className='w-screen h-screen flex flex-col justify-center items-center bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500'>
         <div className='absolute right-10 top-5'>
           <Avatar src={mauiImage} />
@@ -87,6 +90,11 @@ export default function App() {
           </div>
         </div>
       </div>
+    
+    
+    }
+    
+   
     </>
   );
 }

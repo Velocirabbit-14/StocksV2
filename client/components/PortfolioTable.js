@@ -9,32 +9,37 @@ import Paper from '@mui/material/Paper';
 import * as React from 'react';
 
 export default function PortfolioTable({ user, pricesObj }) {
-  const getTotalPortfolioValue = () => {
-    let totalValue = 0;
-    const portfolio = user.portfolio;
-    for (let obj of portfolio) {
-      const company = Object.keys(obj)[0];
-      const shares = obj[company];
-      totalValue += shares * pricesObj[company];
-    }
-    return totalValue;
-  };
 
-  const totalPortfolioValue = getTotalPortfolioValue();
+  
+    const getTotalPortfolioValue = () => {
 
-  const createRows = () => {
-    const rows = [];
-    const portfolio = user.portfolio;
-    for (let obj of portfolio) {
-      const company = Object.keys(obj)[0];
-      const shares = obj[company];
-      const value = shares * pricesObj[company];
-      const percentage = Number(value) / Number(totalPortfolioValue);
-      rows.push({ company, shares, value, percentage });
-    }
-    return rows;
-  };
-  const rows = createRows();
+      let totalValue = 0;
+      const portfolio = user.portfolio;
+      for (let obj of portfolio) {
+        const company = Object.keys(obj)[0];
+        const shares = obj[company];
+        totalValue += shares * pricesObj[company];
+      }
+      return totalValue;
+    };
+  
+    const totalPortfolioValue = getTotalPortfolioValue();
+  
+    const createRows = () => {
+      const rows = [];
+      const portfolio = user.portfolio;
+      for (let obj of portfolio) {
+        const company = Object.keys(obj)[0];
+        const shares = obj[company];
+        const value = shares * pricesObj[company];
+        const percentage = Number(value) / Number(totalPortfolioValue);
+        rows.push({ company, shares, value, percentage });
+      }
+      return rows;
+    };
+    const rows = createRows();
+
+
 
   const columns = [
     { id: 'company', label: 'Company', minWidth: 170 },

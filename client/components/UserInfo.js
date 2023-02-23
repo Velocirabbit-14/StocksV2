@@ -1,7 +1,10 @@
 import React from 'react';
 
 function UserInfo({ user, pricesObj }) {
+
+
   const getTotalPortfolioValue = () => {
+   
     let totalValue = 0;
     const portfolio = user.portfolio;
     for (let obj of portfolio) {
@@ -12,6 +15,8 @@ function UserInfo({ user, pricesObj }) {
     return totalValue;
   };
   const totalPortfolioValue = getTotalPortfolioValue();
+
+
 
   return (
     <div

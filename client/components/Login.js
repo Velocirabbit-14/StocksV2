@@ -11,7 +11,7 @@ function Login({ setLoggedIn, setUser }) {
     const handleFunds = (e) => setFunds(e.target.value);
     // *************** fetch requests ***************//
     async function signUp() {
-        let res = await fetch('/user/signup', {
+        let res = await fetch('/api/user/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/JSON',
@@ -23,22 +23,15 @@ function Login({ setLoggedIn, setUser }) {
             }),
         })
         res = await res.json();
+        console.log(res)
+    
         setUser(res.user)
         setLoggedIn(true)
 
     }
 
     async function login() {
-        let res = await fetch('/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'Application/JSON',
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            }),
-        })
+        let res = await fetch(`/api/user/login/${username}&${password}`)
         res = await res.json();
         setUser(res.user)
         setLoggedIn(true)
