@@ -2,8 +2,6 @@ const db = require('../models/models');
 
 const stockController = {};
 
-// send {portfolio : [{ticker : , shares : }, ]}
-
 stockController.getUserStocks = async (req, res, next) => {
   if (!res.locals.activeUser) return next();
   const userId = res.locals.activeUser._id;
@@ -14,7 +12,7 @@ stockController.getUserStocks = async (req, res, next) => {
     res.locals.portfolio = data.rows;
     return next();
   } catch (err) {
-    return next(err);
+    return next({log: 'error in get user stocks middleware', message: {err: 'There was a problem with retrieving the user\s stocks.'}});
   }
 };
 
@@ -27,7 +25,7 @@ stockController.buyStock = async (req, res, next) => {
     res.locals.newPurchase = data.rows[0];
     return next();
   } catch (err) {
-    return next(err);
+    return next({log: 'error in stockController.buyStock middleware', message: {err: 'There was a problem with buying stock.'}});
   }
 };
 
@@ -41,7 +39,7 @@ stockController.sellStock = async (req, res, next) => {
     res.locals.newSell = data.rows[0];
     return next();
   } catch (err) {
-    return next(err);
+    return next({log: 'error in stockController.sellStock middleware', message: {err: 'There was a problem with selling stock.'}});
   }
 };
 
