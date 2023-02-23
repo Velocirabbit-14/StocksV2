@@ -1,15 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-function StockCard({ stock, price, image, setUser }) {
+function StockCard({ stock, price, image, user, setUser }) {
   const inputRef = useRef(null);
-  const [qtyData, setQtyData] = useState(0);
 
   const handleBuyClick = () => {
     // update state with what user has put into the quantity field
-    // inputRef.current.val is input value
-    setQtyData(inputRef.current.value);
     // declare body and set equal to object with units as key and qtyData as value
-    const body = { shares: qtyData };
+    const body = {
+      ticker: stock,
+      price: price,
+      shares: inputRef.current.value,
+      user_id: user.session.user_id,
+    };
     // make post request
     // DUMMY ROUTE. TO BE UPDATED
     fetch('/api/stocks/buy', {
@@ -22,15 +24,46 @@ function StockCard({ stock, price, image, setUser }) {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        const { portfolio } = user;
-        // DO SOMETHING WITH THIS
-        setUser(resp.updatedUser)
+        console.log(resp);
+        setUser({
+          ...user,
+          funds: resp.updatedUser.funds,
+          portfolio: resp.portfolio,
+        });
       })
       .catch((err) => console.log(err));
   };
 
   const handleSellClick = () => {
     // THIS WILL BE SAME CODE AS HANDLEBUY CLICK
+    // update state with what user has put into the quantity field
+    // declare body and set equal to object with units as key and qtyData as value
+    const body = {
+      ticker: stock,
+      price: price,
+      shares: inputRef.current.value,
+      user_id: user.session.user_id,
+    };
+    // make post request
+    // DUMMY ROUTE. TO BE UPDATED
+    fetch('/api/stocks/sell', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log(resp);
+        setUser({
+          ...user,
+          funds: resp.updatedUser.funds,
+          portfolio: resp.portfolio,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

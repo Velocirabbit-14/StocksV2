@@ -3,7 +3,7 @@ import StockCard from './StockCard';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import logos from './company_logos';
 
-function StockCarousel({user, stocks, pricesObj, setUser }) {
+function StockCarousel({ user, stocks, pricesObj, setUser }) {
   const scrollLeft = () => {
     document.getElementById('content').scrollLeft -= 400;
   };
@@ -33,6 +33,7 @@ function StockCarousel({user, stocks, pricesObj, setUser }) {
             stock={stock}
             price={pricesObj[stock]}
             image={logos[stock]}
+            user={user}
             setUser={setUser}
           />
         ))}
