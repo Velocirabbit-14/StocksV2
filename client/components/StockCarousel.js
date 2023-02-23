@@ -3,7 +3,7 @@ import StockCard from './StockCard';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import logos from './company_logos';
 
-function StockCarousel({ stocks, pricesObj }) {
+function StockCarousel({user, stocks, pricesObj, setUser }) {
   const scrollLeft = () => {
     document.getElementById('content').scrollLeft -= 400;
   };
@@ -13,7 +13,7 @@ function StockCarousel({ stocks, pricesObj }) {
   return (
     <div className='relative' id='carouselContainer'>
       <div className='text-center text-4xl p-1 text-center font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent'>
-        Maui's Portfolio
+        {`${user.username}`}
       </div>
       <div className='absolute right-0 top-5 '>
         <button onClick={scrollLeft} className='p-2 m-2 rounded-full bg-white'>
@@ -33,6 +33,7 @@ function StockCarousel({ stocks, pricesObj }) {
             stock={stock}
             price={pricesObj[stock]}
             image={logos[stock]}
+            setUser={setUser}
           />
         ))}
       </div>

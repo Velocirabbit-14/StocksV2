@@ -23,8 +23,9 @@ function UserInfo({ user, pricesObj }) {
       className='text-xl bg-white rounded-lg shadow-lg p-4'
       id='userInfoContainer'
     >
+    <div>{`${user.username}`}</div>
       <h2>Portfolio Value: {`$${totalPortfolioValue.toFixed(0)}`}</h2>
-      <h2>Available Funds: {`$100`}</h2>
+      <h2>Available Funds: {`${user.funds}`}</h2>
     </div>
   );
 }

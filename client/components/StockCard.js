@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-function StockCard({ stock, price, image }) {
+function StockCard({ stock, price, image, setUser }) {
   const inputRef = useRef(null);
   const [qtyData, setQtyData] = useState(0);
 
@@ -21,9 +21,10 @@ function StockCard({ stock, price, image }) {
       body: JSON.stringify(body),
     })
       .then((resp) => resp.json())
-      .then((user) => {
+      .then((resp) => {
         const { portfolio } = user;
         // DO SOMETHING WITH THIS
+        setUser(resp.updatedUser)
       })
       .catch((err) => console.log(err));
   };

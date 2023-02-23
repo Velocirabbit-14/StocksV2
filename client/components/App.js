@@ -80,7 +80,7 @@ useEffect(()=>{
         </div>
 
         <div className='w-5/6 h-5/6 border rounded-2xl shadow-lg bg-white '>
-          <StockCarousel stocks={stocks} pricesObj={getPrices(data)} />
+          <StockCarousel user={user} stocks={stocks} setUser={setUser} pricesObj={getPrices(data)} />
           <div className='flex justify-between p-16'>
             <div>
               <UserInfo user={user} pricesObj={getPrices(data)} />

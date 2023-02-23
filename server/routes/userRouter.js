@@ -16,4 +16,5 @@ router.post('/signup', userController.signUp, userController.createSession, stoc
   res.status(200).json({portfolio : res.locals.portfolio, username : res.locals.activeUser.username, funds : res.locals.activeUser.funds, session : res.locals.newSession});
 })
 
+
 module.exports = router;

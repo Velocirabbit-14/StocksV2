@@ -6,7 +6,10 @@ function Login({ setLoggedIn, setUser }) {
     const [password, setPassword] = useState('');
     const [funds, setFunds] = useState('')
     //*************** handle functions ***************/
-    const handleUsername = (e) => setUsername(e.target.value);
+    const handleUsername = (e) => {
+        console.log(username)
+        setUsername(e.target.value);
+    }
     const handlePassword = (e) => setPassword(e.target.value);
     const handleFunds = (e) => setFunds(e.target.value);
     // *************** fetch requests ***************//
@@ -25,7 +28,7 @@ function Login({ setLoggedIn, setUser }) {
         res = await res.json();
         console.log(res)
     
-        setUser(res.user)
+        setUser({...res, portfolio:[{'AAPL':3}]})
         setLoggedIn(true)
 
     }
@@ -33,7 +36,7 @@ function Login({ setLoggedIn, setUser }) {
     async function login() {
         let res = await fetch(`/api/user/login/${username}&${password}`)
         res = await res.json();
-        setUser(res.user)
+        setUser(res.username)
         setLoggedIn(true)
     }
 
