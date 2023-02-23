@@ -13,7 +13,7 @@ function StockCard({stock, price}) {
         const body = {shares : qtyData}
         // make post request
         // DUMMY ROUTE. TO BE UPDATED
-        fetch('/user/buy', {
+        fetch('/api/stocks/buy', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -33,7 +33,7 @@ function StockCard({stock, price}) {
         const body = {shares: qtyData}
         // make post request
         // DUMMY ROUTE. TO BE UPDATED
-        fetch('/user/sell', {
+        fetch('/api/stocks/sell', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -46,17 +46,17 @@ function StockCard({stock, price}) {
     }
     
     return (
-    <div id="cardContainer" className="">
-      <div id="companyStockPrice">
-        <h2>stock</h2>
-        <h2>price</h2>
+    <div className='flex  rounded-xl flex-col items-center gap-1 justify-between border border-black shadow-2xl p-4' id="cardContainer" >
+      <div className='flex gap-2' id="companyStockPrice">
+        <h2 className='text-xl underline mr-2' >{stock}</h2>
+        <h2 className='text-xl font-mono font-bold' >{`$${price}`}</h2>
       </div>
-      <div id="quantityContainer">
-      <input ref={inputRef} type="number" id="quantity"/>
-      </div>
-      <div id="buySellContainer">
-      <Button onClick={handleBuyClick}>Buy</Button>
-      <Button onClick={handleSellClick}>Sell</Button>
+   
+      <input className='border text-center w-1/2 self-center ' ref={inputRef} type="number" id="quantity"/>
+
+      <div className='flex gap-2' id="buySellContainer">
+      <button className='border  rounded border-black bg-green-700 w-16 p-2 text-white hover:bg-green-600 shadow-2xl' onClick={handleBuyClick}>Buy</button>
+      <button className='border rounded  border-black bg-red-700 w-16 p-2 text-white hover:bg-red-600 shadow-2xl' onClick={handleSellClick}>Sell</button>
       </div>
     </div>
   )

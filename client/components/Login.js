@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 function Login({ setLoggedIn, setUser }) {
     // ************* state *********************//
     const [username, setUsername] = useState('')
-    const [password, setPassword] = ('');
-    const [funds, setFunds] = ('')
+    const [password, setPassword] = useState('');
+    const [funds, setFunds] = useState('')
     //*************** handle functions ***************/
     const handleUsername = (e) => setUsername(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);

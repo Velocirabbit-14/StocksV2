@@ -11,7 +11,7 @@ import * as React from 'react';
 export default function PortfolioTable({user, pricesObj}) {
 // Write logic to get total portfolio value
   const getTotalPortfolioValue = () => {
-    const totalValue = 0;
+    let totalValue = 0;
     const portfolio = user.portfolio;
     for (let obj of portfolio) {
       const company = Object.keys(obj)[0];
@@ -37,6 +37,7 @@ export default function PortfolioTable({user, pricesObj}) {
     return rows;
   }
   const rows = createRows();
+
   const columns = [
   { id: 'company', label: 'Company', minWidth: 170 },
   { id: 'shares', label: 'Shares', minWidth: 100 },
@@ -69,7 +70,7 @@ export default function PortfolioTable({user, pricesObj}) {
   };
 
   return (
-    <Paper sx={{ width: '50%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '75%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -107,15 +108,7 @@ export default function PortfolioTable({user, pricesObj}) {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+  
     </Paper>
   );
 }

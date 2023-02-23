@@ -3,14 +3,15 @@ import React from 'react'
 import StockCard from "./StockCard";
 
 function StockCarousel({stocks, pricesObj}) {
+  
 
     return (
-    <div id="carouselContainer">
-      <Carousel>
+    <div className='' id="carouselContainer">
+      <div className='flex gap-4  w-screen overflow-auto '>
         {stocks.map((stock, idx) => (
           <StockCard key={idx} stock={stock} price={pricesObj[stock]}/>
         ))}
-      </Carousel>
+      </div>
     </div>
   )
 }

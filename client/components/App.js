@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PortfolioTable from './PortfolioTable';
 import UserInfo from './UserInfo';
 import Login from './Login';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+
 import StockCarousel from './StockCarousel';
-import UserInfo from './UserInfo';
+// import UserInfo from './UserInfo';
 
 export default function App() {
 
@@ -12,7 +12,9 @@ export default function App() {
   //******************* state state state ******************************/
   const stocks = ['AAPL', 'MSFT', 'AMZN', 'TSLA', 'GOOGL', 'META', 'YELP', 'ADBE', 'BABA', 'SONY']
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState({
+    portfolio:[{'AAPL': 2},{'AMZN':5}, {'TSLA':7}]
+  });
   const [data, setData] = useState(null);
 
 
@@ -32,7 +34,12 @@ export default function App() {
     getData(stocks);
   }, []);
 
-  const getPrices = (stocks, data) => {
+
+if(!data){
+  return <div>loading</div>
+}
+
+  const getPrices = () => {
     const pricesObj = {};
     for (let i = 0; i < stocks.length; i++) {
       const key = stocks[i];
@@ -41,14 +48,18 @@ export default function App() {
     }
     return pricesObj;
   }
-
+console.log(data)
   return (
-    <div>
+    <div className='w-screen h-screen'>
       {/* <Login setUser={setUser} setLoggedIn={setLoggedIn}/> */}
-      <AccountCircleRoundedIcon />
+     
       <StockCarousel stocks={stocks} pricesObj={getPrices(data)}/>
-      <UserInfo user={user}/>
+      <div className='flex justify-between p-16'>
+      <div>
+      <UserInfo user={user} pricesObj={getPrices(data)}/>
+      </div>
       <PortfolioTable user={user} pricesObj={getPrices(data)}/>
+      </div>
     </div>
   );
 }
