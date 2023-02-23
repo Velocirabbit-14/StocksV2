@@ -59,7 +59,7 @@
     "jest-mock-fetch": "^2.0.5",
     "whatwg-fetch": "^3.6.2"
     "react-icons": "^4.7.1",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^9.0.0",

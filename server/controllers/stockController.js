@@ -5,6 +5,7 @@ const stockController = {};
 // send {portfolio : [{ticker : , shares : }, ]}
 
 stockController.getUserStocks = async (req, res, next) => {
+  if (!res.locals.activeUser) return next();
   const userId = res.locals.activeUser._id;
   const values = [userId];
   const queryString = 'SELECT public.owned_stock.ticker, public.owned_stock.shares FROM public.owned_stock WHERE owned_stock.user_id = $1 AND owned_stock.shares != 0;';
