@@ -39,16 +39,16 @@
     "postcss": "^8.4.21",
     "postcss-loader": "^7.0.2",
     "react": "^18.2.0",
+    "react-carousel-npm": "^2.1.4",
     "react-dom": "^18.2.0",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.7",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1",
-    "react-carousel-npm": "^2.1.4",
-    "react-elastic-carousel": "^0.11.5"
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-
+    "react-icons": "^4.7.1",
+    "tailwind-scrollbar-hide": "^1.1.7"
   }
 }
