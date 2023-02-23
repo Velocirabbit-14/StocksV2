@@ -18,8 +18,8 @@ app.use('/api/stocks', stockRouter);
 app.use('/api/user', userRouter);
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send({ error: err });
+  console.log(err.log);
+  res.status(404).send(err.message);
 });
 
 app.listen(port, () => {
