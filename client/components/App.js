@@ -3,7 +3,7 @@ import PortfolioTable from './PortfolioTable';
 import UserInfo from './UserInfo';
 import Avatar from '@mui/material/Avatar';
 import Login from './Login';
-
+// import fetch from 'node-fetch';
 import StockCarousel from './StockCarousel';
 import NewTable from './NewTable';
 // import UserInfo from './UserInfo';
@@ -31,7 +31,9 @@ export default function App() {
   });
   const [data, setData] = useState(null);
 
+
   // ********************* fetch requests ******************************//
+
   useEffect(() => {
     async function getData(stocks) {
       const results = [];
@@ -50,9 +52,11 @@ export default function App() {
     getData(stocks);
   }, []);
 
+
   if (!data) {
     return <div>loading</div>;
   }
+
 
   const getPrices = () => {
     const pricesObj = {};
