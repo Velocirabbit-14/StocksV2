@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PortfolioTable from './PortfolioTable';
 import UserInfo from './UserInfo';
 import Login from './Login';
-
+// import fetch from 'node-fetch';
 import StockCarousel from './StockCarousel';
 // import UserInfo from './UserInfo';
 
@@ -18,7 +18,7 @@ export default function App() {
   const [data, setData] = useState(null);
 
 
-  // ********************* fetch requests ******************************//
+  //********************* fetch requests ******************************//
   useEffect(() => {
     async function getData(stocks) {
       const results = [];
@@ -35,7 +35,7 @@ export default function App() {
   }, []);
 
 
-if(!data){
+if(data === null){
   return <div>loading</div>
 }
 
