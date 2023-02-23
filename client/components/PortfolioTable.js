@@ -8,8 +8,7 @@ import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
 import * as React from 'react';
 
-export default function PortfolioTable({user, pricesObj}) {
-// Write logic to get total portfolio value
+export default function PortfolioTable({ user, pricesObj }) {
   const getTotalPortfolioValue = () => {
     let totalValue = 0;
     const portfolio = user.portfolio;
@@ -18,61 +17,51 @@ export default function PortfolioTable({user, pricesObj}) {
       const shares = obj[company];
       totalValue += shares * pricesObj[company];
     }
-    return totalValue; 
-  }
- 
+    return totalValue;
+  };
 
   const totalPortfolioValue = getTotalPortfolioValue();
 
   const createRows = () => {
     const rows = [];
-    const portfolio = user.portfolio;  
+    const portfolio = user.portfolio;
     for (let obj of portfolio) {
       const company = Object.keys(obj)[0];
       const shares = obj[company];
       const value = shares * pricesObj[company];
-      const percentage = Math.floor(value / totalPortfolioValue);
-      rows.push({company, shares, value, percentage})
+      const percentage = Number(value) / Number(totalPortfolioValue);
+      rows.push({ company, shares, value, percentage });
     }
     return rows;
-  }
+  };
   const rows = createRows();
 
   const columns = [
-  { id: 'company', label: 'Company', minWidth: 170 },
-  { id: 'shares', label: 'Shares', minWidth: 100 },
-  {
-    id: '$',
-    label: '$',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'percent',
-    label: '% of Portfolio',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-];
+    { id: 'company', label: 'Company', minWidth: 170 },
+    { id: 'shares', label: 'Shares', minWidth: 100 },
+    {
+      id: 'value',
+      label: '$',
+      minWidth: 170,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+      id: 'percentage',
+      label: '% of Portfolio',
+      minWidth: 170,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+  ];
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
   return (
     <Paper sx={{ width: '75%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label='sticky table'>
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -91,7 +80,7 @@ export default function PortfolioTable({user, pricesObj}) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -108,9 +97,6 @@ export default function PortfolioTable({user, pricesObj}) {
           </TableBody>
         </Table>
       </TableContainer>
-  
     </Paper>
   );
 }
-
-
