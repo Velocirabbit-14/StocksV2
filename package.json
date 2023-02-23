@@ -35,7 +35,6 @@
     "finnhub": "^1.2.16",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
-    "mongoose": "^6.9.2",
     "pg": "^8.9.0",
     "postcss": "^8.4.21",
     "postcss-loader": "^7.0.2",
@@ -48,11 +47,12 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "react-icons": "^4.7.1",
+    "tailwind-scrollbar-hide": "^1.1.7"
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.20",
-    "react-carousel-npm": "^2.1.4",
     "react-cookie": "^4.1.1"
   }
 }
