@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": " concurrently \"nodemon server/server.js\" \"webpack-dev-server --mode development\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -34,12 +34,11 @@
     "express": "^4.18.2",
     "finnhub": "^1.2.16",
     "html-webpack-plugin": "^5.5.0",
-    "mongoose": "^6.9.2",
+    "jest": "^27.5.1",
     "pg": "^8.9.0",
     "postcss": "^8.4.21",
     "postcss-loader": "^7.0.2",
     "react": "^18.2.0",
-    "react-carousel-npm": "^2.1.4",
     "react-dom": "^18.2.0",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.7",
@@ -50,5 +49,10 @@
   "dependencies": {
     "react-icons": "^4.7.1",
     "tailwind-scrollbar-hide": "^1.1.7"
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "nodemon": "^2.0.20",
+    "react-cookie": "^4.1.1"
   }
 }
