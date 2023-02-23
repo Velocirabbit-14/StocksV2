@@ -15,6 +15,8 @@ app.use(cookieParser());
 
 app.use('/api/stocks', stockRouter);
 
+app.use('/api/user', userRouter);
+
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send({ error: err });
