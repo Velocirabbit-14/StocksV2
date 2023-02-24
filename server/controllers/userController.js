@@ -23,7 +23,10 @@ userController.login = async (req, res, next) => {
     res.locals.activeUser = userData.rows[0];
     return next();
   } catch (err) {
-    return next({log: 'error in login middleware', message: {err: 'There was a problem with logging in.'}});
+    return next({
+      log: 'error in login middleware',
+      message: { err: 'There was a problem with logging in.' },
+    });
   }
 };
 
@@ -43,7 +46,10 @@ userController.signUp = async (req, res, next) => {
     res.locals.activeUser = newUserData.rows[0];
     return next();
   } catch (err) {
-    return next({log: 'error in signup middleware', message: {err : err.detail}});
+    return next({
+      log: 'error in signup middleware',
+      message: { err: err.detail },
+    });
   }
 };
 
@@ -62,27 +68,31 @@ userController.createSession = async (req, res, next) => {
       maxAge: 600000,
     });
     return next();
-
-  } catch(err) {
-    return next({log: 'error in createSession middleware', message: {err: 'There was a problem with creating a session'}});
-  } 
-}
-
+  } catch (err) {
+    return next({
+      log: 'error in createSession middleware',
+      message: { err: 'There was a problem with creating a session' },
+    });
+  }
+};
 
 userController.checkSession = async (req, res, next) => {
+  console.log(req.cookies);
   const { STOCKS_SSID } = req.cookies;
   const values = [STOCKS_SSID];
 
-  const queryString = 'SELECT public.user.*, public.session._id AS session_id FROM public.user INNER JOIN public.session ON public.session.user_id = public.user._id WHERE public.session._id = $1;'
+  const queryString =
+    'SELECT public.user.*, public.session._id AS session_id FROM public.user INNER JOIN public.session ON public.session.user_id = public.user._id WHERE public.session._id = $1;';
 
   try {
     const data = await db.query(queryString, values);
     if (data.rows[0]) res.locals.activeUser = data.rows[0];
     return next();
-
-  } catch(err) {
-    return next({log: 'error in checkSession middleware', message: {err: 'There was a problem with checking session.'}});
-
+  } catch (err) {
+    return next({
+      log: 'error in checkSession middleware',
+      message: { err: 'There was a problem with checking session.' },
+    });
   }
 };
 
@@ -96,10 +106,11 @@ userController.buyStock = async (req, res, next) => {
     res.locals.updatedUserStock = data.rows[0];
     res.locals.priceModifier = +`-${price}`;
     return next();
-
-  } catch(err) {
-    return next({log: 'error in userController.buyStock middleware', message: {err: 'There was a problem with buying stock.'}});
-
+  } catch (err) {
+    return next({
+      log: 'error in userController.buyStock middleware',
+      message: { err: 'There was a problem with buying stock.' },
+    });
   }
 };
 
@@ -113,10 +124,11 @@ userController.sellStock = async (req, res, next) => {
     res.locals.updatedUserStock = data.rows[0];
     res.locals.priceModifier = price;
     return next();
-
-  } catch(err) {
-    return next({log: 'error in userController.sellStock middleware', message: {err: 'There was a problem with selling stock.'}});
-
+  } catch (err) {
+    return next({
+      log: 'error in userController.sellStock middleware',
+      message: { err: 'There was a problem with selling stock.' },
+    });
   }
 };
 
@@ -130,10 +142,11 @@ userController.adjustFunds = async (req, res, next) => {
     res.locals.updatedUser = data.rows[0];
     res.locals.activeUser = data.rows[0];
     return next();
-
-  } catch(err) {
-    return next({log: 'error in adjustFunds middleware', message: {err: 'There was a problem with adjusting the user\'s funds.'}});
-
+  } catch (err) {
+    return next({
+      log: 'error in adjustFunds middleware',
+      message: { err: "There was a problem with adjusting the user's funds." },
+    });
   }
 };
 

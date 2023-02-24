@@ -18,8 +18,18 @@ function UserInfo({ user, pricesObj }) {
       className='text-xl bg-white rounded-lg shadow-lg p-4'
       id='userInfoContainer'
     >
-      <h2>Portfolio Value: {`$${totalPortfolioValue.toFixed(0)}`}</h2>
-      <h2>Available Funds: {`$${Number(user.funds).toFixed(0)}`}</h2>
+      <h2 className='text-center text-2xl p-1 text-center font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent'>
+        Portfolio Value:{' '}
+        <span className='text-black'>{`$${totalPortfolioValue.toFixed(
+          0
+        )}`}</span>
+      </h2>
+      <h2 className='text-center text-2xl p-1 text-center font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent'>
+        Available Funds:{' '}
+        <span className='text-black'>{`$${Number(user.funds).toFixed(
+          0
+        )}`}</span>
+      </h2>
     </div>
   );
 }

@@ -12,6 +12,7 @@ function Login({ setLoggedIn, setUser }) {
   const handlePassword = (e) => setPassword(e.target.value);
   const handleFunds = (e) => setFunds(e.target.value);
   // *************** fetch requests ***************//
+
   async function signUp() {
     let res = await fetch('/api/user/signup', {
       method: 'POST',
@@ -67,7 +68,7 @@ function Login({ setLoggedIn, setUser }) {
         </button>
       </div>
 
-      <h2 className='text-xl'>Or</h2>
+      <h2 className='text-transparent'>Or</h2>
       <div className='rounded-lg shadow-lg flex flex-col bg-white justify-center items-center rounded  border gap-2 h-2/5 min-h-fit shadow-xl w-1/2 '>
         <div className='text-center text-4xl p-1 text-center font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent'>
           Create an Account

@@ -9,8 +9,6 @@ import NewTable from './NewTable';
 
 export default function App() {
   //******************* state state state ******************************/
-  const mauiImage =
-    'https://ca.slack-edge.com/T0464QV57N0-U04AURBV6JX-558ce6667654-192';
   const stocks = [
     'AAPL',
     'MSFT',
@@ -20,7 +18,6 @@ export default function App() {
     'YELP',
     'BABA',
     'ADBE',
-
     'SONY',
     'GOOGL',
   ];
@@ -30,7 +27,18 @@ export default function App() {
 
   // ********************* fetch requests ******************************//
 
-  useEffect(() => {}, [loggedIn]);
+  useEffect(() => {
+    async function checkSession() {
+      let res = await fetch('/api/user/session');
+      res = await res.json();
+      console.log(res);
+      if (res.user) {
+        setUser(res);
+        setLoggedIn(true);
+      }
+    }
+    checkSession();
+  }, []);
 
   useEffect(() => {
     async function getData(stocks) {
@@ -51,7 +59,7 @@ export default function App() {
   }, []);
 
   if (!data) {
-    return <div>loading</div>;
+    return <div class='text-center'>loading...</div>;
   }
 
   const getPrices = () => {
@@ -81,12 +89,13 @@ export default function App() {
               setUser={setUser}
               pricesObj={getPrices(data)}
             />
-            <div className='flex justify-between p-16'>
-              <div>
+            <div className='flex justify-between items-center gap-6 p-16 h-3/5 '>
+              <div className=' w-2/5 h-4/5'>
                 <UserInfo user={user} pricesObj={getPrices(data)} />
               </div>
-              <NewTable user={user} pricesObj={getPrices(data)} />
-              {/* <PortfolioTable user={user} pricesObj={getPrices(data)} /> */}
+              <div className='w-3/5 h-full  overflow-auto'>
+                <NewTable user={user} pricesObj={getPrices(data)} />
+              </div>
             </div>
           </div>
         </div>
