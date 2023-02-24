@@ -10,7 +10,7 @@ function StockCard({ stock, price, image, user, setUser }) {
       ticker: stock,
       price: price,
       shares: inputRef.current.value,
-      user_id: user.session.user_id,
+      user_id: user.user._id,
     };
     // make post request
     // DUMMY ROUTE. TO BE UPDATED
@@ -32,17 +32,19 @@ function StockCard({ stock, price, image, user, setUser }) {
         });
       })
       .catch((err) => console.log(err));
+    inputRef.current.value = '';
   };
 
   const handleSellClick = () => {
     // THIS WILL BE SAME CODE AS HANDLEBUY CLICK
     // update state with what user has put into the quantity field
     // declare body and set equal to object with units as key and qtyData as value
+    console.log(user);
     const body = {
       ticker: stock,
       price: price,
       shares: inputRef.current.value,
-      user_id: user.session.user_id,
+      user_id: user.user._id,
     };
     // make post request
     // DUMMY ROUTE. TO BE UPDATED
@@ -64,6 +66,7 @@ function StockCard({ stock, price, image, user, setUser }) {
         });
       })
       .catch((err) => console.log(err));
+    inputRef.current.value = '';
   };
 
   return (

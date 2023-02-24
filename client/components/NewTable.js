@@ -25,24 +25,25 @@ function NewTable({ user, pricesObj }) {
         ((Number(value) / Number(totalPortfolioValue)) * 100).toFixed(1) + '%';
       rows.push([company, shares, value, percentage]);
     }
+    rows.sort();
     return rows;
   };
   const rows = createRows();
 
   const cols = ['Company', 'Shares', 'Value', '% of Portfolio'];
   return (
-    <div className='w-3/5 relative '>
-      <table className='min-w-full rounded-lg shadow-lg leading-normal table-auto overflow-scroll'>
-        <thead className='px-5 py-3 rounded-lg bg-black text-center text-lg font-semibold text-white uppercase'>
+    <div className='  relative  overflow-auto '>
+      <table className='min-w-full rounded-lg shadow-lg leading-normal'>
+        <thead className='px-5 py-3 rounded-lg bg-gray-700 text-center text-lg font-semibold text-white uppercase'>
           <tr>
             {cols.map((header) => (
               <th className=''>{header}</th>
             ))}
           </tr>
         </thead>
-        <tbody className=''>
+        <tbody className='w-full '>
           {rows.map((arr) => (
-            <tr className='text-center'>
+            <tr className='text-center  '>
               {cols.map((_, idx) => (
                 <td className='px-5 py-5 border-b border-gray-200 bg-white text-lg tracking-wider'>
                   {arr[idx]}
